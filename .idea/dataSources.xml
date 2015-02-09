@@ -1,18 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-  <component name="DataSourceManagerImpl" format="xml" hash="3629466756">
-    <data-source source="LOCAL" name="Rails cookbook3: development" product="" version="" jdbc-version="" driver-name="" driver-version="" uuid="dd83065d-ef3c-47b1-a4e6-ea9e6db603be">
+  <component name="DataSourceManagerImpl" format="xml" hash="3002800107">
+    <data-source source="LOCAL" name="Rails cookbook3: development" uuid="dd83065d-ef3c-47b1-a4e6-ea9e6db603be">
+      <driver-ref>sqlite.xerial</driver-ref>
       <jdbc-driver>org.sqlite.JDBC</jdbc-driver>
-      <jdbc-url>jdbc:sqlite:C:\Documents and Settings\efg\RubymineProjects\cookbook3\db\development.sqlite3</jdbc-url>
-      <libraries>
-        <library>
-          <url>file://$USER_HOME$/.RubyMine50/config/jdbc-drivers/xerial-sqlite-license.txt</url>
-        </library>
-        <library>
-          <url>jar://$USER_HOME$/.RubyMine50/config/jdbc-drivers/sqlite-jdbc-3.7.2.jar!/</url>
-        </library>
-      </libraries>
+      <jdbc-url>jdbc:sqlite:C:\Users\triss_000\RubymineProjects\CSC517Project1\db\development.sqlite3</jdbc-url>
+      <libraries />
+    </data-source>
+    <data-source source="LOCAL" name="Rails cookbook3: test" uuid="a68b063f-8778-45d5-b39d-aabdc286e819">
+      <driver-ref>sqlite.xerial</driver-ref>
+      <synchronize>true</synchronize>
+      <jdbc-driver>org.sqlite.JDBC</jdbc-driver>
+      <jdbc-url>jdbc:sqlite:C:\Users\triss_000\RubymineProjects\CSC517Project1\db\test.sqlite3</jdbc-url>
+      <libraries />
     </data-source>
   </component>
 </project>
-
