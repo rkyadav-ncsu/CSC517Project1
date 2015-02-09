@@ -25,6 +25,7 @@ ActiveRecord::Schema.define(version: 20150208110355) do
     t.string   "password"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "password_digest"
   end
 
   create_table "recipes", force: true do |t|
