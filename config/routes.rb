@@ -1,13 +1,16 @@
 Cookbook3::Application.routes.draw do
+  get 'login' => 'sessions#new'
+  post 'login' => 'sessions#create'
+  delete 'logout' => 'sessions#destroy'
   resources :recipes
-  resources :developers
+  resources :users
   resources :categories
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
   # You can have the root of your site routed with "root"
-   root :to => 'categories#index'
+   root :to => 'sessions#new'
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
