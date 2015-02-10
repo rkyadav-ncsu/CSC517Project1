@@ -2,6 +2,9 @@
 <html>
 <head>
   <title>Online Cookbook</title>
+  <% flash.each do |name, msg| -%>
+      <%= content_tag :div, msg, class: name %>
+  <% end -%>
   <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
 
   <%= csrf_meta_tags %>

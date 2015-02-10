@@ -3,6 +3,8 @@ source 'https://rubygems.org'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.0.0'
 
+#custom css
+gem 'bootstrap-sass', '3.2.0.0'
 # Use sqlite3 as the database for Active Record
 gem 'sqlite3'
 
@@ -28,7 +30,8 @@ gem 'turbolinks'
 gem 'jbuilder', '~> 1.2'
 
 #Include encryption for passwords
-gem 'bcrypt-ruby' , '~> 3.0.0'
+gem 'bcrypt-ruby', '3.0.0'
+gem 'bcrypt'
 
 group :doc do
   # bundle exec rake doc:rails generates the API under doc/api.
