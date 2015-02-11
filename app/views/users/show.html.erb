@@ -15,5 +15,15 @@
   <%= @user.password_digest %>
 </p>
 
+<p>
+  <strong>Developer:</strong>
+  <%= @user.developer %>
+</p>
+
+<p>
+  <strong>Admin:</strong>
+  <%= @user.admin %>
+</p>
+
 <%= link_to 'Edit', edit_user_path(@user) %> |
 <%= link_to 'Back', users_path %>

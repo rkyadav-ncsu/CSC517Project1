@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
   before_action :set_user, only: [:show, :edit, :update, :destroy]
-
+  include SessionsHelper
   # GET /users
   # GET /users.json
   def index
@@ -14,7 +14,12 @@ class UsersController < ApplicationController
 
   # GET /users/new
   def new
-    @user = User.new
+    if admin?
+      @user = User.new
+    else
+      flash.now[:danger] = "You are not allowed to view that page."
+      redirect_to :back
+    end
   end
 
   # GET /users/1/edit
@@ -73,6 +78,6 @@ class UsersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def user_params
-      params.require(:user).permit(:name,:email,:password, :password_confirmation)
+      params.require(:user).permit(:name,:email,:password, :password_confirmation, :developer, :admin)
     end
 end
