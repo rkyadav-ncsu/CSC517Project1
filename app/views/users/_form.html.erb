@@ -27,6 +27,14 @@
       <%= f.label :password_confirmation %><br />
       <%= f.text_field :password_confirmation %>
     </div>
+    <div class="field">
+      <%=f.label :developer %><br />
+      <%= f.check_box :developer %>
+    </div>
+    <div class="field">
+      <%=f.label :admin %><br />
+      <%= f.check_box :admin %>
+    </div>
   <div class="actions">
     <%= f.submit %>
   </div>
