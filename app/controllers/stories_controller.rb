@@ -8,10 +8,20 @@ class StoriesController < ApplicationController
 
   def index
     @project=Project.find(params[:id])
+    @title=params[:title]
+    @storySearch=Story.new
+    if(@title!=nil)
+      @stories=Story.search(@title)
+      @stories=@stories.where(project_id=@project.id)
+    end
+    else
+    @stories=Story.where(project_id=@project.id)
+    end
+=begin
     puts @project
     puts @project.name
-    @stories =Story.where(project_id = @project.id)
-  end
+=end
+
   def new
     puts params
     @project=Project.find(params[:id])
@@ -84,7 +94,7 @@ class StoriesController < ApplicationController
   end
 
   def story_params
-    params.require(:story).permit(:project_id, :title, :description, :developer1_id, :developer2_id)
+    params.require(:story).permit(:project_id, :title, :description, :developer1_id, :developer2_id,:pointValue,:stage)
   end
 end
 

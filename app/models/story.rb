@@ -5,4 +5,11 @@ class Story < ActiveRecord::Base
   belongs_to :developer2, :class_name => 'User'
   validates :title, :presence => true
   validates :project, :presence => true
+  def self.search(search)
+    if search
+      find(:all, :conditions => ['title LIKE ?', "%#{search}%"])
+    else
+      find(:all)
+    end
+  end
 end
