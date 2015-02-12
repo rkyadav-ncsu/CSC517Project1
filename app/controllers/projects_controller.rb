@@ -40,11 +40,15 @@ class ProjectsController < ApplicationController
   # DELETE /projects/1
   # DELETE /projects/1.json
   def destroy
-    @project.destroy
-    respond_to do |format|
-      format.html { redirect_to projects_url }
-      format.json { head :no_content }
-    end
+    @project=Project.find(params[:id])
+    @stories=Story.where( project_id=@project.id)
+    if @stories.count==0
+      @project.destroy
+      respond_to do |format|
+        format.html { redirect_to projects_url }
+        format.json { head :no_content }
+      end
+      end
   end
 
   private

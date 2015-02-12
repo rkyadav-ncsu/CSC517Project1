@@ -1,8 +1,10 @@
 class StoriesController < ApplicationController
   include SessionsHelper
 
+=begin
   @pointValue=[[1,1],[2,2],[3,3],[4,4]]
   @stageOptions=[["Analysis","Analysis"], ["Ready for Dev","Ready for Dev"],["In Development","In Development"] ,["Development Complete","Development Complete"], ["In Test","In Test"] ,["Complete","Complete"]]
+=end
 
   def index
     @project=Project.find(params[:id])
@@ -66,9 +68,11 @@ class StoriesController < ApplicationController
   # DELETE /projects/1
   # DELETE /projects/1.json
   def destroy
+    @story=Story.find(params[:id])
+    @tempProjectId=@story.project.id
     @story.destroy
     respond_to do |format|
-      format.html { redirect_to stories_path }
+      format.html { redirect_to stories_path(:id=>@tempProjectId) }
       format.json { head :no_content }
     end
   end
