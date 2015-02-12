@@ -1,9 +1,10 @@
 <h1>Listing projects</h1>
 
-<table>
+<table border="1">
   <thead>
   <tr>
-    <th>Name</th>
+    <th style="padding: 5px 5px 5px 5px">Name</th>
+    <th style="padding: 5px 5px 5px 5px">Description</th>
     <th></th>
     <th></th>
     <th></th>
@@ -13,10 +14,11 @@
   <tbody>
   <% @projects.each do |project| %>
       <tr>
-        <td><%= project.name %></td>
-        <td><%= link_to 'Show', project %></td>
-        <td><%= link_to 'Edit', edit_project_path(project) %></td>
-        <td><%= link_to 'Destroy', project, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td style="padding: 5px 5px 5px 5px"><%= project.name %></td>
+        <td style="padding: 5px 5px 5px 5px"><%= project.description %></td>
+        <td style="padding: 5px 5px 5px 5px"><%= link_to 'Show', project %></td>
+        <td style="padding: 5px 5px 5px 5px"><%= link_to 'Edit', edit_project_path(project) %></td>
+        <td style="padding: 5px 5px 5px 5px"><%= link_to 'Delete', project, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
   <% end %>
   </tbody>
