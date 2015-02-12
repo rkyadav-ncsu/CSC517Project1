@@ -14,12 +14,12 @@ class UsersController < ApplicationController
 
   # GET /users/new
   def new
-    if admin?
+    #if admin?
       @user = User.new
-    else
-      flash.now[:danger] = "You are not allowed to view that page."
-      redirect_to :back
-    end
+    #else
+    #  flash.now[:danger] = "You are not allowed to view that page."
+    #  redirect_to :back
+    #end
   end
 
   # GET /users/1/edit
@@ -63,6 +63,15 @@ class UsersController < ApplicationController
   # DELETE /users/1
   # DELETE /users/1.json
   def destroy
+    @stories = Story.all
+    @stories.each do |story|
+      if story.developer1 == @user
+        story.developer1 = nil
+      end
+      if story.developer2 == @user
+        story.developer2 = nil
+      end
+    end
     @user.destroy
     respond_to do |format|
       format.html { redirect_to users_url }

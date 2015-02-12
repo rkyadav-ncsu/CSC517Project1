@@ -25,8 +25,6 @@ class StoriesController < ApplicationController
   def new
     puts params
     @project=Project.find(params[:id])
-    #TODO Set developers
-    #@developer1 = User.find_by name: params[]
     @pointValue=[[1,1],[2,2],[3,3],[4,4]]
     @stageOptions=[["Analysis","Analysis"], ["Ready for Dev","Ready for Dev"],["In Development","In Development"] ,["Development Complete","Development Complete"], ["In Test","In Test"] ,["Complete","Complete"]]
     @story = Story.new

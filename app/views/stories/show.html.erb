@@ -8,6 +8,18 @@
   <strong>Description:</strong>
   <%= @story.description %>
 </p>
+<p>
+  <% if !@story.developer1.nil? %>
+    <strong> Developer 1</strong>
+      <%= @story.developer1.name %>
+  <% end %>
+</p>
+<p>
+  <% if !@story.developer2.nil? %>
+      <strong> Developer 1</strong>
+      <%= @story.developer1.name %>
+  <% end %>
+</p>
 
 <%= link_to 'Edit', edit_story_path(@story) %> |
 <%= link_to 'Back', stories_path %>
