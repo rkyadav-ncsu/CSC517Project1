@@ -1,0 +1,21 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  title: MyString
+  description: MyString
+  pointValue: 1
+  stage: MyString
+  developer1: 
+  developer2: MyString
+  project: 
+  createdBy: 
+
+two:
+  title: MyString
+  description: MyString
+  pointValue: 1
+  stage: MyString
+  developer1: 
+  developer2: MyString
+  project: 
+  createdBy: 

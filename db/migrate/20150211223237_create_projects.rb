@@ -5,7 +5,7 @@ class CreateProjects < ActiveRecord::Migration
       t.string :description
       t.datetime :createdOn
       t.boolean :isActive
-      t.integer :createdBy
+      t.string :createdBy
 
       t.timestamps
     end

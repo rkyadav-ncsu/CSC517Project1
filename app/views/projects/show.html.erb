@@ -8,6 +8,10 @@
   <strong>Description:</strong>
   <%= @project.description %>
 </p>
+<p>
+  <strong>Show Stories:</strong>
+  <%= link_to 'Stories', stories_index_path(:id=>@project.id) %>
+</p>
 
 <%= link_to 'Edit', edit_project_path(@project) %> |
 <%= link_to 'Back', projects_path %>

@@ -1,5 +1,6 @@
 Cookbook3::Application.routes.draw do
-  get "projects/projects"
+  get "stories/index"
+  get "projects/show"
   get 'login' => 'sessions#new'
   post 'login' => 'sessions#create'
   get 'logout' => 'sessions#destroy'
@@ -8,6 +9,7 @@ Cookbook3::Application.routes.draw do
   resources :users
   resources :categories
   resources :projects
+  resources :stories
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
