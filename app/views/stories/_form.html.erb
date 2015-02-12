@@ -1,5 +1,5 @@
 <%= form_for(@story) do |f| %>
-
+    <% puts params %>
     <% if @story.errors.any? %>
         <div id="error_explanation">
           <h2><%= pluralize(@story.errors.count, "error") %> prohibited this story from being saved:</h2>
@@ -11,7 +11,7 @@
           </ul>
         </div>
     <% end %>
-    <input type="hidden" value="<%=@project.id%>" />
+    <%= f.hidden_field :project_id, :project_id => "params[:id]"%>
 
     <div class="field">
       <%= f.label :title %><br>
@@ -23,12 +23,12 @@
     </div>
 
     <div class="field">
-      <%= f.label :developer1 %><br>
-      <%= f.text_field :developer1 %>
+      <%= f.label :developer1_id %><br>
+      <%= f.text_field :developer1_id %>
     </div>
     <div class="field">
-      <%= f.label :developer2 %><br>
-      <%= f.text_field :developer2 %>
+      <%= f.label :developer2_id %><br>
+      <%= f.text_field :developer2_id %>
     </div>
     <div class="field">
       <%= f.label :pointValue %><br>

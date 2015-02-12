@@ -6,10 +6,15 @@ class StoriesController < ApplicationController
 
   def index
     @project=Project.find(params[:id])
+    puts @project
+    puts @project.name
     @stories =Story.where(project_id = @project.id)
   end
   def new
+    puts params
     @project=Project.find(params[:id])
+    #TODO Set developers
+    #@developer1 = User.find_by name: params[]
     @pointValue=[[1,1],[2,2],[3,3],[4,4]]
     @stageOptions=[["Analysis","Analysis"], ["Ready for Dev","Ready for Dev"],["In Development","In Development"] ,["Development Complete","Development Complete"], ["In Test","In Test"] ,["Complete","Complete"]]
     @story = Story.new
@@ -27,6 +32,10 @@ class StoriesController < ApplicationController
   def create
     @pointValue=[[1,1],[2,2],[3,3],[4,4]]
     @stageOptions=[["Analysis","Analysis"], ["Ready for Dev","Ready for Dev"],["In Development","In Development"] ,["Development Complete","Development Complete"], ["In Test","In Test"] ,["Complete","Complete"]]
+    puts story_params
+    story_params[:project] = Project.find(story_params[:project_id])
+    story_params[:developer1] = User.find_by id: story_params[:developer1_id]
+    story_params[:developer2] = User.find_by id: story_params[:developer2_id]
     @story = Story.new(story_params)
     respond_to do |format|
       if @story.save
@@ -66,8 +75,12 @@ class StoriesController < ApplicationController
 
   private
 
+  def set_story
+    @story = Story.find(params[:id])
+  end
+
   def story_params
-    params.require(:story).permit(:title,:project)
+    params.require(:story).permit(:project_id, :title, :description, :developer1_id, :developer2_id)
   end
 end
 
