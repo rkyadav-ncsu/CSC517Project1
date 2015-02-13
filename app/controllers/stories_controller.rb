@@ -9,13 +9,11 @@ class StoriesController < ApplicationController
   def index
     @project=Project.find(params[:id])
     @title=params[:title]
-    @storySearch=Story.new
+    @stories = Story.where(project: @project)
     if(@title!=nil)
-      @stories=Story.search(@title)
-      @stories=@stories.where(project_id=@project.id)
+      @stories = @stories.where(title: @title)
     end
     else
-    @stories=Story.where(project_id=@project.id)
     end
 =begin
     puts @project
