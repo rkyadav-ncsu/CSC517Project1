@@ -22,7 +22,7 @@
           <%end%>
           <br/>
       <% end %>
-  <%#<% end %>
+  <% end %>
   <br/>
 
   <strong>Add Developers</strong>
@@ -32,17 +32,17 @@
       <%= submit_tag("Add")%>
   <%end%>
 
-  <%end%>
+  <%#<%end%>
 
   <%#<% if current_user.developer?  %>
-      <% @users = User.all%>
-      <% @users.each do |user| %>
-          <% if user.project == @project %>
-              <%=user.name%>
-              <br/>
-          <% end %>
-      <% end %>
-      <br/>
+   <%#   <% @users = User.all%>
+   <%#   <% @users.each do |user| %>
+    <%#      <% if user.project == @project %>
+     <%#         <%=user.name%>
+     <%#         <br/>
+      <%#    <% end %>
+    <%#  <% end %>
+    <%#  <br/>
   <%#<%end%>
 
 </p>
