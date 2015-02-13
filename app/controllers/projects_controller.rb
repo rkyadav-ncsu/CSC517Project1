@@ -11,6 +11,14 @@ class ProjectsController < ApplicationController
   end
   def show
     @project=Project.find(params[:id])
+    @user=nil
+    @addDeveloper=[]
+    User.all.each do |u|
+      if u.project == nil then
+        @addDeveloper.append([u.name,u.id])
+      end
+    end
+
   end
   def create
     @project = Project.new(projects_params)
@@ -49,6 +57,11 @@ class ProjectsController < ApplicationController
         format.json { head :no_content }
       end
       end
+  end
+  def addDev
+    User.find(params[@user.id]).project=Project.find(params[@project.id])
+
+
   end
 
   private
