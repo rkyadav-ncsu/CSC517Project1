@@ -9,6 +9,15 @@
   <%= @project.description %>
 </p>
 <p>
+  <strong>Developers:</strong>
+  <% @users = User.all%>
+  <% @users.each do |user| %>
+      <% if user.project == @project %>
+        <%= user.name %>
+      <% end %>
+  <% end %>
+</p>
+<p>
   <strong>Show Stories:</strong>
   <%= link_to 'Stories', stories_index_path(:id=>@project.id) %>
 </p>
