@@ -25,6 +25,8 @@ test:
   timeout: 5000
   username: agileapp
   password: dbpassagile
+  host: localhost
+  port: 5433
 
 production:
   adapter: postgresql
@@ -34,3 +36,5 @@ production:
   timeout: 5000
   username: agileapp
   password: dbpassagile
+  host: localhost
+  port: 5433
