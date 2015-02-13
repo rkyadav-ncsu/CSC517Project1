@@ -5,6 +5,8 @@ Cookbook3::Application.routes.draw do
   post 'login' => 'sessions#create'
   get 'logout' => 'sessions#destroy'
   delete 'logout' => 'sessions#destroy'
+  get  "projects/addDev" => 'projects#addDev'
+  get "projects/delDev" => 'projects#delDev'
   resources :recipes
   resources :users
   resources :categories

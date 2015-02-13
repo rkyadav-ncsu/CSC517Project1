@@ -11,7 +11,6 @@ class ProjectsController < ApplicationController
   end
   def show
     @project=Project.find(params[:id])
-    @user=nil
     @addDeveloper=[]
     User.all.each do |u|
       if u.project == nil then
@@ -59,9 +58,25 @@ class ProjectsController < ApplicationController
       end
   end
   def addDev
-    User.find(params[@user.id]).project=Project.find(params[@project.id])
+    @project = Project.find(params[:id])
+    @user = User.find(params[:user_id])
+    @user.project=@project
+    @user.save
+    respond_to do |format|
+      format.html { redirect_to @project }
+      format.json { head :no_content }
+    end
 
-
+  end
+  def delDev
+    @project = Project.find(params[:id])
+    @user = User.find(params[:user_id])
+    @user.project=nil
+    @user.save
+    respond_to do |format|
+      format.html { redirect_to @project }
+      format.json { head :no_content }
+    end
   end
 
   private

@@ -10,22 +10,41 @@
 </p>
 <p>
   <%#<% if current_user.admin?  %>
-  <strong>Developers:</strong>
+  <strong>Developers:</strong><br/>
   <% @users = User.all%>
   <% @users.each do |user| %>
       <% if user.project == @project %>
-        <%= user.name %><br/>
+          <%=form_tag("/projects/delDev",method:"get") do %>
+              <%= label_tag(user.name) %>
+              <%= hidden_field_tag(:user_id ,user.id)%>
+              <%= hidden_field_tag(:id,@project.id)%>
+              <%= submit_tag("Delete")%>
+          <%end%>
+          <br/>
       <% end %>
-  <% end %>
+  <%#<% end %>
   <br/>
 
   <strong>Add Developers</strong>
-  <%= select_tag(@user.id ,options_for_select(@addDeveloper))%>
-      <div class="actions">
-        <button formaction="addDev">Add</button>
-  </div>
+  <%=form_tag("/projects/addDev",method:"get") do %>
+  <%= select_tag(:user_id ,options_for_select(@addDeveloper))%>
+  <%= hidden_field_tag(:id,@project.id)%>
+      <%= submit_tag("Add")%>
+  <%end%>
 
+  <%end%>
+
+  <%#<% if current_user.developer?  %>
+      <% @users = User.all%>
+      <% @users.each do |user| %>
+          <% if user.project == @project %>
+              <%=user.name%>
+              <br/>
+          <% end %>
+      <% end %>
+      <br/>
   <%#<%end%>
+
 </p>
 
 <p>
