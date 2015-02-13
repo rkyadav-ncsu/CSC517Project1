@@ -34,8 +34,9 @@ class StoriesController < ApplicationController
     respond_to do |format|
     @story = Story.find(params[:id])
     @signup_dev = User.find(params[:signup_dev_id])
-    @story.developer1 = @signup_dev
     cleanup_dev_signups(@story.id)
+    @story.developer1 = @signup_dev
+
     @story.save
     format.html { redirect_to stories_index_path(:id => @story.project_id), notice: 'Story was successfully updated.' }
 
@@ -45,8 +46,9 @@ class StoriesController < ApplicationController
     respond_to do |format|
       @story = Story.find(params[:id])
       @signup_dev = User.find(params[:signup_dev_id])
-      @story.developer2 = @signup_dev
       cleanup_dev_signups(@story.id)
+      @story.developer2 = current_user
+
       @story.save
       format.html { redirect_to stories_index_path(:id => @story.project_id), notice: 'Story was successfully updated.' }
 
@@ -55,10 +57,10 @@ class StoriesController < ApplicationController
   def cleanup_dev_signups(story_id)
     @stories = Story.all
     @stories.each do |story|
-      if story.developer1 == current_user and story.id != story_id
+      if story.developer1 == current_user
         story.developer1 = nil
       end
-      if story.developer2 == current_user and story.id != story_id
+      if story.developer2 == current_user
         story.developer2 = nil
       end
       story.save
