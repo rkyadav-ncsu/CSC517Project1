@@ -11,14 +11,10 @@ class StoriesController < ApplicationController
     @title=params[:title]
     @stories = Story.where(project: @project)
     if(@title!=nil)
-      @stories = @stories.where(title: @title)
+      @stories = @stories.search(@title)
     end
     else
     end
-=begin
-    puts @project
-    puts @project.name
-=end
 
   def new
     puts params
