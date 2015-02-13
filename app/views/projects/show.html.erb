@@ -87,11 +87,12 @@
               <%= story.developer2.name %><br />
           <% end %>
           </td>
-
+        <%if current_user.project == @project or current_user.admin?%>
         <!--<td style="padding: 5px 5px 5px 5px"><%= link_to 'Show', story %></td>
         <td style="padding: 5px 5px 5px 5px"><%= link_to 'Edit', edit_story_path(story) %></td>
         <td style="padding: 5px 5px 5px 5px"><%= link_to 'Destroy', story, method: :delete, data: { confirm: 'Are you sure?' } %></td>
         -->
+            <% end %>
       </tr>
   <% @point_total = @point_total + story.pointValue %>
   <% end %>

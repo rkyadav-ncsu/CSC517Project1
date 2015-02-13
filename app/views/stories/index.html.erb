@@ -35,22 +35,29 @@
           <%unless story.developer1.nil? %>
           <%= story.developer1.name %><br />
               <% end %>
-              <%= link_to 'Signup',"#{story.id}/stories/signup_dev1/#{story.id}/#{current_user.id}" %></td>
+          <%if current_user.project == @project or current_user.admin?%>
+              <%= link_to 'Signup',"#{story.id}/stories/signup_dev1/#{story.id}/#{current_user.id}" %>
+              <% end %></td>
         <td style="padding: 5px 5px 5px 5px">
           <%unless story.developer2.nil? %>
           <%= story.developer2.name %><br />
           <% end %>
-          <%= link_to 'Signup',"#{story.id}/stories/signup_dev2/#{story.id}/#{current_user.id}" %></td>
+          <%if current_user.project == @project or current_user.admin?%>
+          <%= link_to 'Signup',"#{story.id}/stories/signup_dev2/#{story.id}/#{current_user.id}" %>
+              <% end %></td>
+        <%if current_user.project == @project or current_user.admin?%>
         <td style="padding: 5px 5px 5px 5px"><%= link_to 'Show', story %></td>
         <td style="padding: 5px 5px 5px 5px"><%= link_to 'Edit', edit_story_path(story) %></td>
         <td style="padding: 5px 5px 5px 5px"><%= link_to 'Destroy', story, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+            <% end %>
       </tr>
   <% end %>
   </tbody>
 </table>
 
 <br>
-
+    <%if current_user.project == @project or current_user.admin?%>
 <%= link_to 'New Story', new_story_path(:project=>@project, :id=>@project.id) %>
+        <% end %>
 <%= link_to 'Back To Project', project_path(@project.id)%>
 <% end%>
