@@ -6,6 +6,5 @@ class DropDevelopersCreateUsers < ActiveRecord::Migration
       t.string :password_digest
       t.timestamps
     end
-    drop_table :developers
   end
 end
