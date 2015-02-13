@@ -7,9 +7,7 @@ Cookbook3::Application.routes.draw do
   delete 'logout' => 'sessions#destroy'
   get  "projects/addDev" => 'projects#addDev'
   get "projects/delDev" => 'projects#delDev'
-  resources :recipes
   resources :users
-  resources :categories
   resources :projects
   resources :stories do
     get 'stories/signup_dev1/:id/:signup_dev_id' => 'stories#signup_dev1'
