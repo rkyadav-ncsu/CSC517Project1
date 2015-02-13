@@ -1,9 +1,12 @@
 require 'test_helper'
 
 class ProjectControllerTest < ActionController::TestCase
-  test "should get projects" do
-    get :projects
-    assert_response :success
+  def setup
+    @controller = ProjectsController.new
+  end
+  test "should get index" do
+    get :index
+    assert_response :found
   end
 
 end
