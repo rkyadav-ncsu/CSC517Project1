@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
   before_action :set_user, only: [:show, :edit, :update, :destroy]
+  skip_before_action :require_login
   include SessionsHelper
   # GET /users
   # GET /users.json
@@ -14,12 +15,12 @@ class UsersController < ApplicationController
 
   # GET /users/new
   def new
-    if current_user.admin?
+    #if current_user.admin?
       @user = User.new
-    else
-      flash.now[:danger] = "You are not allowed to view that page."
-      redirect_to :back
-    end
+    #else
+    #  flash.now[:danger] = "You are not allowed to view that page."
+    #  redirect_to :back
+    #end
   end
 
   # GET /users/1/edit
