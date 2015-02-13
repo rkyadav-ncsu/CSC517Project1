@@ -1,5 +1,5 @@
 
-
+<%content_for :list_area do%>
 <h1>Listing Stories</h1>
 <h3>Search Stories</h3>
 <%= form_tag("/stories", method: "get") do %>
@@ -31,8 +31,16 @@
         <td style="padding: 5px 5px 5px 5px"><%= story.description %></td>
         <td style="padding: 5px 5px 5px 5px"><%= story.pointValue %></td>
         <td style="padding: 5px 5px 5px 5px"><%= story.stage %></td>
-        <td style="padding: 5px 5px 5px 5px"><%= story.developer1 %></td>
-        <td style="padding: 5px 5px 5px 5px"><%= story.developer2 %></td>
+        <td style="padding: 5px 5px 5px 5px">
+          <%unless story.developer1.nil? %>
+          <%= story.developer1.name %><br />
+              <% end %>
+              <%= link_to 'Signup',"#{story.id}/stories/signup_dev1/#{story.id}/#{current_user.id}" %></td>
+        <td style="padding: 5px 5px 5px 5px">
+          <%unless story.developer2.nil? %>
+          <%= story.developer2.name %><br />
+          <% end %>
+          <%= link_to 'Signup',"#{story.id}/stories/signup_dev2/#{story.id}/#{current_user.id}" %></td>
         <td style="padding: 5px 5px 5px 5px"><%= link_to 'Show', story %></td>
         <td style="padding: 5px 5px 5px 5px"><%= link_to 'Edit', edit_story_path(story) %></td>
         <td style="padding: 5px 5px 5px 5px"><%= link_to 'Destroy', story, method: :delete, data: { confirm: 'Are you sure?' } %></td>
@@ -45,3 +53,4 @@
 
 <%= link_to 'New Story', new_story_path(:project=>@project, :id=>@project.id) %>
 <%= link_to 'Back To Project', project_path(@project.id)%>
+<% end%>
