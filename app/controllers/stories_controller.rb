@@ -75,12 +75,18 @@ class StoriesController < ApplicationController
     story_params[:developer2] = User.find_by id: story_params[:developer2_id]
     @story = Story.new(story_params)
     respond_to do |format|
-      if @story.save
+      if isUserDeveloperOnProject?(story_params[:project_id]) && @story.save
         format.html { redirect_to @story, notice: 'Story was successfully created.' }
         format.json { render action: 'show', status: :created, location: @story }
       else
-        format.html { render action: 'new' }
-        format.json { render json: @story.errors, status: :unprocessable_entity }
+        if !(isUserDeveloperOnProject?(story_params[:project_id]))
+          format.html { redirect_to stories_path(:id => story_params[:project_id]), notice: 'Failed: You do not have permission to create story.'}
+          format.json { render action: 'index',:id=>story_params[:project_id], status: :unprocessable_entity, location: @story }
+        else
+          format.html { render action: 'new' }
+          format.json { render json: @story.errors, status: :unprocessable_entity }
+        end
+
       end
     end
   end
@@ -90,12 +96,17 @@ class StoriesController < ApplicationController
       @stageOptions=[["Analysis","Analysis"], ["Ready for Dev","Ready for Dev"],["In Development","In Development"] ,["Development Complete","Development Complete"], ["In Test","In Test"] ,["Complete","Complete"]]
       @story=Story.find(params[:id])
 
-      if @story.update(story_params)
+      if isUserDeveloperOnProject?(story_params[:project_id]) && @story.update(story_params)
         format.html { redirect_to @story, notice: 'Story was successfully updated.' }
         format.json { head :no_content }
       else
+        if !(isUserDeveloperOnProject?(story_params[:project_id]))
+          format.html { redirect_to stories_path(:id => story_params[:project_id]), notice: 'Failed: You do not have permission to create story.'}
+          format.html { redirect_to @story, :id=>story_params[:project_id], notice: :unprocessable_entity }
+        else
         format.html { render action: 'edit' }
         format.json { render json: @story.errors, status: :unprocessable_entity }
+          end
       end
     end
   end
@@ -105,11 +116,17 @@ class StoriesController < ApplicationController
   def destroy
     @story=Story.find(params[:id])
     @tempProjectId=@story.project.id
-    @story.destroy
+    if(isUserDeveloperOnProject?(@tempProjectId))
+      @story.destroy
+      respond_to do |format|
+        format.html { redirect_to stories_path(:id=>@tempProjectId) }
+        format.json { head :no_content }
+      end
+    else
     respond_to do |format|
-      format.html { redirect_to stories_path(:id=>@tempProjectId) }
-      format.json { head :no_content }
+      format.html{redirect_to stories_path(:id=>@tempProjectId)}
     end
+      end
   end
 
   private
@@ -120,6 +137,17 @@ class StoriesController < ApplicationController
 
   def story_params
     params.require(:story).permit(:project_id, :title, :description, :pointValue,:stage)
+  end
+  def isUserDeveloperOnProject?(projectid)
+    @project=Project.find(projectid)
+    @project.developers.each do |developer|
+      if(developer.name==current_user.name)
+        puts developer.name
+        puts current_user.name
+        return true
+      end
+    end
+    return false
   end
 end
 
