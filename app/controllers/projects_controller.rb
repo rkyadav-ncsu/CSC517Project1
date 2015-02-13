@@ -48,20 +48,22 @@ class ProjectsController < ApplicationController
   # DELETE /projects/1.json
   def destroy
     @project=Project.find(params[:id])
-    @stories=Story.where( project_id=@project.id)
-    if @stories.count==0
+    @stories=Story.where(project_id: @project.id)
+    if current_user.admin?
       @project.destroy
+    end
       respond_to do |format|
         format.html { redirect_to projects_url }
         format.json { head :no_content }
       end
-      end
   end
   def addDev
     @project = Project.find(params[:id])
+    if(User.find_by(id: params[:user_id]) != nil)
     @user = User.find(params[:user_id])
     @user.project=@project
     @user.save
+    end
     respond_to do |format|
       format.html { redirect_to @project }
       format.json { head :no_content }

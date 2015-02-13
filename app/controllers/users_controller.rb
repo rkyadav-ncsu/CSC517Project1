@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
   before_action :set_user, only: [:show, :edit, :update, :destroy]
-  skip_before_action :require_login
+  #skip_before_action :require_login
   include SessionsHelper
   # GET /users
   # GET /users.json
@@ -15,12 +15,12 @@ class UsersController < ApplicationController
 
   # GET /users/new
   def new
-    #if current_user.admin?
+    if current_user.admin?
       @user = User.new
-    #else
-    #  flash.now[:danger] = "You are not allowed to view that page."
-    #  redirect_to :back
-    #end
+    else
+      flash.now[:danger] = "You are not allowed to view that page."
+      redirect_to :back
+    end
   end
 
   # GET /users/1/edit
@@ -65,6 +65,7 @@ class UsersController < ApplicationController
   # DELETE /users/1
   # DELETE /users/1.json
   def destroy
+    if(current_user.admin? and current_user != @user)
     @stories = Story.all
     @stories.each do |story|
       if story.developer1 == @user
@@ -74,10 +75,16 @@ class UsersController < ApplicationController
         story.developer2 = nil
       end
     end
-    @user.destroy
+    end
     respond_to do |format|
-      format.html { redirect_to users_url }
-      format.json { head :no_content }
+      if(current_user.admin? and current_user != @user)
+        @user.destroy
+        format.html { redirect_to users_url }
+        format.json { head :no_content }
+      else
+        flash.now[:danger] = "You are not allowed to delete users."
+        format.html {redirect_to users_url}
+      end
     end
   end
 
