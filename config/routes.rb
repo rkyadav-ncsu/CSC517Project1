@@ -9,7 +9,10 @@ Cookbook3::Application.routes.draw do
   resources :users
   resources :categories
   resources :projects
-  resources :stories
+  resources :stories do
+    get 'stories/signup_dev1/:id/:signup_dev_id' => 'stories#signup_dev1'
+    get 'stories/signup_dev2/:id/:signup_dev_id' => 'stories#signup_dev2'
+  end
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
