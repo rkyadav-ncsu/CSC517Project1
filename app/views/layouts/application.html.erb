@@ -20,13 +20,12 @@
   <%= yield %>
   <%= yield :list_area %>
   <p>
-    <%= link_to "Show all recipes", recipes_path %>
-    <%= link_to "Show all categories", categories_path %>
-    <%= link_to "Show all users", users_path %>
-    <%=link_to "Show all projects",projects_path%>
     <% if logged_in? %>
+        <%= link_to "Show all users", users_path %>
+        <%=link_to "Show all projects",projects_path%>
         <%= link_to "Log out", logout_path %>
     <% end -%>
+    <%= link_to 'New User', new_user_path %>
   </p>
 </div>
 <div style="width:80%; float:left;"></div>

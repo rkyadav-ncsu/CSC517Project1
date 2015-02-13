@@ -9,7 +9,7 @@
   <%= @project.description %>
 </p>
 <p>
-  <%#<% if current_user.admin?  %>
+  <% if current_user.admin?  %>
   <strong>Developers:</strong><br/>
   <% @users = User.all%>
   <% @users.each do |user| %>
@@ -32,18 +32,19 @@
       <%= submit_tag("Add")%>
   <%end%>
 
-  <%#<%end%>
+  <%end%>
 
-  <%#<% if current_user.developer?  %>
-   <%#   <% @users = User.all%>
-   <%#   <% @users.each do |user| %>
-    <%#      <% if user.project == @project %>
-     <%#         <%=user.name%>
-     <%#         <br/>
-      <%#    <% end %>
-    <%#  <% end %>
-    <%#  <br/>
-  <%#<%end%>
+  <% if current_user.developer?  %>
+      <strong>Developers:</strong><br/>
+      <% @users = User.all%>
+      <% @users.each do |user| %>
+          <% if user.project == @project %>
+              <%=user.name%>
+              <br/>
+          <% end %>
+      <% end %>
+      <br/>
+  <%end%>
 
 </p>
 
