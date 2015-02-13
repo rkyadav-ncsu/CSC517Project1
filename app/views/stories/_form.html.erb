@@ -32,11 +32,11 @@
     </div>
     <div class="field">
       <%= f.label :pointValue %><br>
-      <%= select_tag(:pointValue, options_for_select(@pointValue)) %>
+      <%= f.select(:pointValue, options_for_select(@pointValue)) %>
     </div>
     <div class="field">
       <%= f.label :stage %><br>
-      <%= select_tag(:stage, options_for_select(@stageOptions)) %>
+      <%= f.select(:stage, options_for_select(@stageOptions)) %>
     </div>
     <div class="actions">
       <%= f.submit %>

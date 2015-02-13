@@ -62,9 +62,9 @@
     <th style="padding: 5px 5px 5px 5px">Stage</th>
     <th style="padding: 5px 5px 5px 5px">Developer 1</th>
     <th style="padding: 5px 5px 5px 5px">Developer 2</th>
+    <!--<th></th>
     <th></th>
-    <th></th>
-    <th></th>
+    <th></th>-->
   </tr>
   </thead>
 
@@ -77,11 +77,21 @@
         <td style="padding: 5px 5px 5px 5px"><%= story.description %></td>
         <td style="padding: 5px 5px 5px 5px"><%= story.pointValue %></td>
         <td style="padding: 5px 5px 5px 5px"><%= story.stage %></td>
-        <td style="padding: 5px 5px 5px 5px"><%= story.developer1 %></td>
-        <td style="padding: 5px 5px 5px 5px"><%= story.developer2 %></td>
-        <td style="padding: 5px 5px 5px 5px"><%= link_to 'Show', story %></td>
+        <td style="padding: 5px 5px 5px 5px">
+          <%unless story.developer1.nil? %>
+              <%= story.developer1.name %><br />
+          <% end %>
+         </td>
+        <td style="padding: 5px 5px 5px 5px">
+          <%unless story.developer2.nil? %>
+              <%= story.developer2.name %><br />
+          <% end %>
+          </td>
+
+        <!--<td style="padding: 5px 5px 5px 5px"><%= link_to 'Show', story %></td>
         <td style="padding: 5px 5px 5px 5px"><%= link_to 'Edit', edit_story_path(story) %></td>
         <td style="padding: 5px 5px 5px 5px"><%= link_to 'Destroy', story, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        -->
       </tr>
   <% @point_total = @point_total + story.pointValue %>
   <% end %>
