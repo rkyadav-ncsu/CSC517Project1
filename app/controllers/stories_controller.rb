@@ -120,7 +120,7 @@ class StoriesController < ApplicationController
   end
 
   def story_params
-    params.require(:story).permit(:project_id, :title, :description, :developer1_id, :developer2_id,:pointValue,:stage)
+    params.require(:story).permit(:project_id, :title, :description, :pointValue,:stage)
   end
 end
 
