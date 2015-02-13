@@ -18,6 +18,7 @@
 
   <h1>Online Cookbook</h1>
   <%= yield %>
+  <%= yield :list_area %>
   <p>
     <%= link_to "Show all recipes", recipes_path %>
     <%= link_to "Show all categories", categories_path %>

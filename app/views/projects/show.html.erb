@@ -21,6 +21,46 @@
   <strong>Show Stories:</strong>
   <%= link_to 'Stories', stories_index_path(:id=>@project.id) %>
 </p>
+<p>
+  <strong>Current Storyboard:</strong>
+<table border="1">
+  <thead>
+  <tr>
+    <th style="padding: 5px 5px 5px 5px">Name</th>
+    <th style="padding: 5px 5px 5px 5px">Description</th>
+    <th style="padding: 5px 5px 5px 5px">Point Value</th>
+    <th style="padding: 5px 5px 5px 5px">Stage</th>
+    <th style="padding: 5px 5px 5px 5px">Developer 1</th>
+    <th style="padding: 5px 5px 5px 5px">Developer 2</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+  </thead>
+
+  <tbody>
+  <% @point_total = 0 %>
+  <% Story.where(project: @project, ).each do |story| %>
+        <% if story.stage != "Complete"%>
+      <tr>
+        <td style="padding: 5px 5px 5px 5px"><%= story.title %></td>
+        <td style="padding: 5px 5px 5px 5px"><%= story.description %></td>
+        <td style="padding: 5px 5px 5px 5px"><%= story.pointValue %></td>
+        <td style="padding: 5px 5px 5px 5px"><%= story.stage %></td>
+        <td style="padding: 5px 5px 5px 5px"><%= story.developer1 %></td>
+        <td style="padding: 5px 5px 5px 5px"><%= story.developer2 %></td>
+        <td style="padding: 5px 5px 5px 5px"><%= link_to 'Show', story %></td>
+        <td style="padding: 5px 5px 5px 5px"><%= link_to 'Edit', edit_story_path(story) %></td>
+        <td style="padding: 5px 5px 5px 5px"><%= link_to 'Destroy', story, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+  <% @point_total = @point_total + story.pointValue %>
+  <% end %>
+  <% end %>
+  </tbody>
+</table>
+<strong> Point total remaining: </strong>
+<%= @point_total %>
+</p>
 
 <%= link_to 'Edit', edit_project_path(@project) %> |
 <%= link_to 'Back', projects_path %>
