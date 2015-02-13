@@ -2,11 +2,11 @@
 
 <h1>Listing Stories</h1>
 <h3>Search Stories</h3>
-<%= form_for(@storySearch) do |f| %>
-    <div class="field">
-      <%= f.text_field :title %>
-      <button value="search" name="search" formaction="search">search</button>
-    </div>
+<%= form_tag("/stories", method: "get") do %>
+    <%= hidden_field_tag(:id, @project.id) %>
+    <%= label_tag(:title, "Search for:") %>
+    <%= text_field_tag(:title) %>
+    <%= submit_tag("Search") %>
 <% end %>
 
 <table border="1">

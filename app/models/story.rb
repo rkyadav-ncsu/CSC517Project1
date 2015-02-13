@@ -7,7 +7,7 @@ class Story < ActiveRecord::Base
   validates :project, :presence => true
   def self.search(search)
     if search
-      find(:all, :conditions => ['title LIKE ?', "%#{search}%"])
+      find(:all, :conditions => ['title LIKE ? or description like ?', "%#{search}%","%#{search}%"])
     else
       find(:all)
     end
