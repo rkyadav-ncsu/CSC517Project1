@@ -13,7 +13,7 @@ class ProjectsController < ApplicationController
     @project=Project.find(params[:id])
     @addDeveloper=[]
     User.all.each do |u|
-      if u.project == nil then
+      if u.project == nil and u.developer?
         @addDeveloper.append([u.name,u.id])
       end
     end
@@ -59,7 +59,7 @@ class ProjectsController < ApplicationController
   end
   def addDev
     @project = Project.find(params[:id])
-    if(User.find_by(id: params[:user_id]) != nil)
+    if(User.find_by_id(params[:user_id]) != nil)
     @user = User.find(params[:user_id])
     @user.project=@project
     @user.save
