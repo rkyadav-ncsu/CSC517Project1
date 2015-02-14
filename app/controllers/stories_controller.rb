@@ -33,24 +33,30 @@ class StoriesController < ApplicationController
   def signup_dev1
     respond_to do |format|
     @story = Story.find(params[:id])
+    if(isUserDeveloperOnProject?(@story.project.id))
     @signup_dev = User.find(params[:signup_dev_id])
     cleanup_dev_signups(@story.id, 1)
     @story.developer1 = @signup_dev
 
     @story.save
     format.html { redirect_to stories_index_path(:id => @story.project_id), notice: 'Story was successfully updated.' }
-
+    else
+      format.html { redirect_to stories_index_path(:id => @story.project_id), notice: 'You are not a developer on the project.' }
+    end
     end
   end
   def signup_dev2
     respond_to do |format|
       @story = Story.find(params[:id])
+      if(isUserDeveloperOnProject?(@story.project.id))
       @signup_dev = User.find(params[:signup_dev_id])
       cleanup_dev_signups(@story.id, 2)
       @story.developer2 = current_user
-
       @story.save
       format.html { redirect_to stories_index_path(:id => @story.project_id), notice: 'Story was successfully updated.' }
+      else
+        format.html { redirect_to stories_index_path(:id => @story.project_id), notice: 'You are not a developer on the project.' }
+        end
 
     end
   end
@@ -144,7 +150,7 @@ class StoriesController < ApplicationController
   def isUserDeveloperOnProject?(projectid)
     @project=Project.find(projectid)
     @project.developers.each do |developer|
-      if(developer.name==current_user.name)
+      if(developer == current_user)
         puts developer.name
         puts current_user.name
         return true
