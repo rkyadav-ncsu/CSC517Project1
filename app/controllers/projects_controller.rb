@@ -62,6 +62,7 @@ class ProjectsController < ApplicationController
     if(User.find_by_id(params[:user_id]) != nil)
     @user = User.find(params[:user_id])
     @user.project=@project
+    @user.developer = true
     @user.save
     end
     respond_to do |format|
