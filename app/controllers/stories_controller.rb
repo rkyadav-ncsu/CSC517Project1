@@ -34,7 +34,7 @@ class StoriesController < ApplicationController
     respond_to do |format|
     @story = Story.find(params[:id])
     @signup_dev = User.find(params[:signup_dev_id])
-    cleanup_dev_signups(@story.id)
+    cleanup_dev_signups(@story.id, 1)
     @story.developer1 = @signup_dev
 
     @story.save
@@ -46,7 +46,7 @@ class StoriesController < ApplicationController
     respond_to do |format|
       @story = Story.find(params[:id])
       @signup_dev = User.find(params[:signup_dev_id])
-      cleanup_dev_signups(@story.id)
+      cleanup_dev_signups(@story.id, 2)
       @story.developer2 = current_user
 
       @story.save
@@ -54,13 +54,13 @@ class StoriesController < ApplicationController
 
     end
   end
-  def cleanup_dev_signups(story_id)
+  def cleanup_dev_signups(story_id, dev_num)
     @stories = Story.all
     @stories.each do |story|
-      if story.developer1 == current_user
+      if story.developer1 == current_user and (story != Story.find(story_id) or dev_num == 2)
         story.developer1 = nil
       end
-      if story.developer2 == current_user
+      if story.developer2 == current_user and (story != Story.find(story_id) or dev_num == 1)
         story.developer2 = nil
       end
       story.save
