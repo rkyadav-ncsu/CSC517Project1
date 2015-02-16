@@ -3,7 +3,7 @@
 #Instructions regarding project.
 There is an admin account for application: <br />
 admin
-username: admin@dev.com,
+username: Admin@dev.com,
 password: pass123
 
 developer:
