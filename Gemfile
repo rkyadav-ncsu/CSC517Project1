@@ -5,6 +5,7 @@ gem 'rails', '4.0.0'
 
 #custom css
 gem 'bootstrap-sass', '3.2.0.0'
+gem 'autoprefixer-rails'
 # Use sqlite3 as the database for Active Record
 #gem 'sqlite3'
 gem 'pg'

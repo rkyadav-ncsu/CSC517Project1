@@ -7,6 +7,7 @@ class ApplicationController < ActionController::Base
   private
   def require_login
     unless logged_in?
+      puts "Current user is " + current_user.id
       flash.now[:danger] = "You must be logged in to continue"
       redirect_to root_url
     end
