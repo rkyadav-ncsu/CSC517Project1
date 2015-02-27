@@ -7,7 +7,7 @@ username: Admin@dev.com,
 password: pass123
 
 developer:
-username: user1@dev.com
+username: dev@dev.com
 password: pass789
 
 During user creation: provide a valid email to receive emails.
