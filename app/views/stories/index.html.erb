@@ -41,17 +41,20 @@
           <%= story.developer2.name %><br />
           <% end %>
           <%= link_to 'Signup',"/stories/#{story.id}/stories/signup_dev2/#{story.id}/#{current_user.id}" %></td>
+        <% if current_user.project == @project && current_user.developer? %>
         <td style="padding: 5px 5px 5px 5px"><%= link_to 'Show', story %></td>
         <td style="padding: 5px 5px 5px 5px"><%= link_to 'Edit', edit_story_path(story) %></td>
         <td style="padding: 5px 5px 5px 5px"><%= link_to 'Destroy', story, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
+        <% end %>
+            </tr>
   <% end %>
   </tbody>
 </table>
 
 <br>
 
-
+    <% if current_user.project == @project && current_user.developer? %>
 <%= link_to 'New Story', new_story_path(:project=>@project, :id=>@project.id) %>
+        <% end %>
 <%= link_to 'Back To Project', project_path(@project.id)%>
 <% end%>

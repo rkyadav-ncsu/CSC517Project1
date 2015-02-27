@@ -16,7 +16,7 @@
       <tr>
         <td style="padding: 5px 5px 5px 5px"><%= project.name %></td>
         <td style="padding: 5px 5px 5px 5px"><%= project.description %></td>
-        <td style="padding: 5px 5px 5px 5px"><%= link_to 'Show', project %></td>
+        <td style="padding: 5px 5px 5px 5px"><%= link_to 'Show/Add Developers', project %></td>
         <td style="padding: 5px 5px 5px 5px"><%= link_to 'Edit', edit_project_path(project) %></td>
         <td style="padding: 5px 5px 5px 5px"><%= link_to 'Delete', project, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
@@ -25,5 +25,3 @@
 </table>
 
 <br>
-
-<%= link_to 'New Project', new_project_path %>

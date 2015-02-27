@@ -37,8 +37,9 @@ class StoriesController < ApplicationController
     @signup_dev = User.find(params[:signup_dev_id])
     cleanup_dev_signups(@story.id, 1)
     @story.developer1 = @signup_dev
-
+    @signup_dev.story = @story
     @story.save
+    @signup_dev.save
     format.html { redirect_to stories_index_path(:id => @story.project_id), notice: 'Story was successfully updated.' }
     else
       format.html { redirect_to stories_index_path(:id => @story.project_id), notice: 'You are not a developer on the project.' }
@@ -52,7 +53,9 @@ class StoriesController < ApplicationController
       @signup_dev = User.find(params[:signup_dev_id])
       cleanup_dev_signups(@story.id, 2)
       @story.developer2 = current_user
+      @signup_dev.story = @story
       @story.save
+      @signup_dev.save
       format.html { redirect_to stories_index_path(:id => @story.project_id), notice: 'Story was successfully updated.' }
       else
         format.html { redirect_to stories_index_path(:id => @story.project_id), notice: 'You are not a developer on the project.' }
